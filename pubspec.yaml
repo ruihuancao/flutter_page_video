@@ -1,8 +1,8 @@
 name: flutter_page_video
-description: A new flutter package project.
+description: flutter full video player
 version: 0.0.1
-author: ruihuan
-homepage: 
+author: ruihuan <ruihuancao@gmail.com>
+homepage: https://github.com/ruihuancao/flutter_page_video.git
 
 dependencies:
   flutter:
@@ -51,5 +51,5 @@ flutter:
   #
   # For details regarding fonts in packages, see
   # https://flutter.io/custom-fonts/#from-packages
- environment:
-    sdk: ">=1.19.0 <2.0.0"
+environment:
+  sdk: ">=1.19.0 <2.0.0"
