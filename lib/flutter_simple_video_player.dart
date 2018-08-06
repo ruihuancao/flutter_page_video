@@ -432,11 +432,11 @@ class _VideoFullPageState extends State<VideoFullPage> {
 
   @override
   Widget build(BuildContext context) {
-    if(VideoType.net == widget.type){
+    if(VideoType.file == widget.type){
       return Scaffold(
           body: FileVideo(widget.source)
       );
-    }else if(VideoType.net == widget.type){
+    }else if(VideoType.assets == widget.type){
       return Scaffold(
           body: AssetVideo(widget.source)
       );

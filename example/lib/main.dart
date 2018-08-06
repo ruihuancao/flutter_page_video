@@ -1,11 +1,3 @@
-# flutter_page_video
-
-Flutter 视频播放插件
-
-## 示例
-
-
-```
 import 'package:flutter/material.dart';
 import 'package:flutter_simple_video_player/flutter_simple_video_player.dart';
 
@@ -54,4 +46,5 @@ class Home extends StatelessWidget {
     );
   }
 }
-```
+
+
