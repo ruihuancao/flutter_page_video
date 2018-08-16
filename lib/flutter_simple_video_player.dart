@@ -1,6 +1,5 @@
 library flutter_page_video;
 
-
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'package:flutter/services.dart';
@@ -22,10 +21,15 @@ class VideoPlayPause extends StatefulWidget {
 class _VideoPlayPauseState extends State<VideoPlayPause> {
   Widget imageFadeAnim;
   VoidCallback listener;
+  String tip;
 
   _VideoPlayPauseState() {
     listener = () {
       setState(() {});
+      if (controller.value.hasError) {
+        print(controller.value.errorDescription);
+        tip = "加载失败";
+      }
     };
   }
 
@@ -47,69 +51,68 @@ class _VideoPlayPauseState extends State<VideoPlayPause> {
 
   Widget getController() {
     Color primaryColor = Theme.of(context).primaryColor;
-    return Center(
-      child: Stack(
-        children: <Widget>[
-          Align(
-            alignment: Alignment.topLeft,
-            child: IconButton(
-                icon: Icon(Icons.arrow_back, color: primaryColor),
-                onPressed: () {
-                  Navigator.pop(context);
-                }),
-          ),
-          Align(
-            alignment: Alignment.center,
+    return Stack(
+      children: <Widget>[
+        Align(
+          alignment: Alignment.topLeft,
+          child: IconButton(
+              icon: Icon(Icons.arrow_back, color: primaryColor),
+              onPressed: () {
+                Navigator.pop(context);
+              }),
+        ),
+        Container(
+          child: Center(
             child: controller.value.isBuffering
                 ? CircularProgressIndicator()
-                : IconButton(
-                icon: Icon(
-                  Icons.pause,
+                : GestureDetector(
+                child: Icon(
+                  Icons.play_circle_outline,
                   color: primaryColor,
                   size: 60.0,
                 ),
-                onPressed: onPlayerController),
+                onTap: onPlayerController),
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Opacity(
-              opacity: 0.8,
-              child: Container(
-                  height: 30.0,
-                  color: Colors.black45,
-                  alignment: Alignment.center,
-                  child: Row(
-                    children: <Widget>[
-                      Container(
-                          padding: EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Center(
-                            child: Text(
-                              "${controller.value.position.toString().split(".")[0]}",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          )),
-                      Expanded(
-                        child: VideoProgressIndicator(
-                          controller,
-                          allowScrubbing: true,
-                          colors:
-                          VideoProgressColors(playedColor: primaryColor),
-                        ),
+        ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Opacity(
+            opacity: 0.8,
+            child: Container(
+                height: 30.0,
+                color: Colors.black45,
+                alignment: Alignment.center,
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Center(
+                          child: Text(
+                            "${controller.value.position.toString().split(".")[0]}",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        )),
+                    Expanded(
+                      child: VideoProgressIndicator(
+                        controller,
+                        allowScrubbing: true,
+                        colors:
+                        VideoProgressColors(playedColor: primaryColor),
                       ),
-                      Container(
-                          padding: EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Center(
-                            child: Text(
-                              "${controller.value.duration.toString().split(".")[0]}",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          )),
-                    ],
-                  )),
-            ),
+                    ),
+                    Container(
+                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Center(
+                          child: Text(
+                            "${controller.value.duration.toString().split(".")[0]}",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        )),
+                  ],
+                )),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -227,6 +230,7 @@ abstract class _PlayerLifeCycleState extends State<PlayerLifeCycle> {
     controller.addListener(() {
       if (controller.value.hasError) {
         print(controller.value.errorDescription);
+        Navigator.pop(context);
       }
     });
     controller.initialize();
@@ -356,6 +360,7 @@ class NetVideo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.black,
       child: new NetworkPlayerLifeCycle(
         source,
             (BuildContext context, VideoPlayerController controller) =>
@@ -447,5 +452,4 @@ class _VideoFullPageState extends State<VideoFullPage> {
     }
   }
 }
-
 
