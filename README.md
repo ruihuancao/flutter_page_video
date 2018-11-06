@@ -5,7 +5,7 @@ Flutter 视频播放插件
 ## 依赖
 ```
 dependencies:
-  flutter_simple_video_player: ^0.0.5
+  flutter_simple_video_player: ^0.0.7
 ```
 
 ## 示例

@@ -53,21 +53,21 @@ class _VideoPlayPauseState extends State<VideoPlayPause> {
     Color primaryColor = Theme.of(context).primaryColor;
     return Stack(
       children: <Widget>[
-        Align(
-          alignment: Alignment.topLeft,
-          child: IconButton(
-              icon: Icon(Icons.arrow_back, color: primaryColor),
-              onPressed: () {
-                Navigator.pop(context);
-              }),
-        ),
+//        Align(
+//          alignment: Alignment.topLeft,
+//          child: IconButton(
+//              icon: Icon(Icons.arrow_back, color: primaryColor),
+//              onPressed: () {
+//                Navigator.pop(context);
+//              }),
+//        ),
         Container(
           child: Center(
             child: controller.value.isBuffering
                 ? CircularProgressIndicator()
                 : GestureDetector(
                 child: Icon(
-                  Icons.play_circle_outline,
+                  Icons.pause,
                   color: primaryColor,
                   size: 60.0,
                 ),
@@ -230,7 +230,7 @@ abstract class _PlayerLifeCycleState extends State<PlayerLifeCycle> {
     controller.addListener(() {
       if (controller.value.hasError) {
         print(controller.value.errorDescription);
-        Navigator.pop(context);
+        //Navigator.pop(context);
       }
     });
     controller.initialize();

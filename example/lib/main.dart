@@ -31,7 +31,7 @@ class Home extends StatelessWidget {
           RaisedButton(onPressed: (){
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => VideoFullPage('https://youku.cdn-56.com/20180622/3878_d3968706/index.m3u8',)),
+              MaterialPageRoute(builder: (context) => VideoFullPage('https://sohu.com-v-sohu.com/20181104/14057_a4cd27fe/index.m3u8',)),
             );
           }, child: Text("full play video"),),
           Container(

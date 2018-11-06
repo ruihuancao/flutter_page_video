@@ -1,6 +1,6 @@
 name: flutter_simple_video_player
 description: flutter simple video player
-version: 0.0.5
+version: 0.0.7
 author: ruihuan <ruihuancao@gmail.com>
 homepage: https://github.com/ruihuancao/flutter_page_video.git
 
@@ -8,7 +8,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  video_player: ^0.6.4
+  video_player: ^0.7.2
 
 
 dev_dependencies:
@@ -52,5 +52,5 @@ flutter:
   # For details regarding fonts in packages, see
   # https://flutter.io/custom-fonts/#from-packages
 environment:
-  sdk: ">=2.0.0 <3.0.0"
-  flutter: ">=0.1.4 <2.0.0"
+  sdk: ">=2.0.0-dev.28.0 <3.0.0"
+  flutter: ">=0.2.5 <2.0.0"
