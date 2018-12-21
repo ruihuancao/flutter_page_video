@@ -1,50 +1,66 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_simple_video_player/flutter_simple_video_player.dart';
 
-void main() => runApp(new MyApp());
+void main() {
+  runApp(MaterialApp(
+      home: MyApp()
+  ));
+}
 
-class MyApp extends StatelessWidget {
+
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'Flutter Video Demo',
-      theme: new ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: new Scaffold(
+    return Scaffold(
         appBar: AppBar(
-          title: Text("Video"),
+          title: Text("Video Demo"),
         ),
-        body:  Home()
-      ),
+        body: Container(
+            child: Column(
+              children: <Widget>[
+                Container(
+                  height: 200.0,
+                  child: SimpleVideoPlayer(
+                    "http://184.72.239.149/vod/smil:BigBuckBunny.smil/playlist.m3u8",
+                  ),
+                )
+              ],
+            )
+        )
     );
   }
 }
 
-
-class Home extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ListView(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Demo"),
+      ),
+      body: ListView(
         children: <Widget>[
           RaisedButton(onPressed: (){
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => VideoFullPage('https://sohu.com-v-sohu.com/20181104/14057_a4cd27fe/index.m3u8',)),
-            );
-          }, child: Text("full play video"),),
-          Container(
-            height: 256.0,
-            color: Colors.black,
-            child: Center(
-              child: NetVideo("https://youku.cdn-56.com/20180622/3878_d3968706/index.m3u8"),
-            ),
-          ),
+            Navigator.of(context).push(MaterialPageRoute(builder: (context){
+              return HomePage();
+            }));
+          }, child: Text("Video Play"),),
+          RaisedButton(onPressed: (){
+            Navigator.of(context).push(MaterialPageRoute(builder: (context){
+              return SimpleVideoPlayer("http://184.72.239.149/vod/smil:BigBuckBunny.smil/playlist.m3u8", isLandscape: true,);
+            }));
+          }, child: Text("Video Full Play"),)
         ],
       ),
     );
   }
 }
+
 
 
