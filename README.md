@@ -2,6 +2,10 @@
 
 Flutter 视频播放插件
 
+## 说明
+   依赖于 [Video Player](https://github.com/flutter/plugins/tree/master/packages/video_player) 插件，加入了全屏切换。
+   具体支持视频格式，参见 [Video Player](https://github.com/flutter/plugins/tree/master/packages/video_player)。
+
 ## 依赖
 ```
 dependencies:
