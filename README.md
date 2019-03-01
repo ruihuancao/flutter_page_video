@@ -5,7 +5,7 @@ Flutter 视频播放插件
 ## 依赖
 ```
 dependencies:
-  flutter_simple_video_player: ^0.0.8
+  flutter_simple_video_player: ^0.0.9
 ```
 
 ## 示例
@@ -13,7 +13,7 @@ dependencies:
 
 ```
 import 'package:flutter/material.dart';
-import 'package:flutter_simple_video_player/flutter_simple_video_player.dart';
+import 'package:flutter_simple_video_player/simple_video_player.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -21,36 +21,7 @@ void main() {
   ));
 }
 
-
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text("Video Demo"),
-        ),
-        body: Container(
-            child: Column(
-              children: <Widget>[
-                Container(
-                  height: 200.0,
-                  child: SimpleVideoPlayer(
-                    "http://184.72.239.149/vod/smil:BigBuckBunny.smil/playlist.m3u8",
-                  ),
-                )
-              ],
-            )
-        )
-    );
-  }
-}
-
+// http://184.72.239.149/vod/smil:BigBuckBunny.smil/playlist.m3u8
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -58,20 +29,10 @@ class MyApp extends StatelessWidget {
       appBar: AppBar(
         title: Text("Demo"),
       ),
-      body: ListView(
-        children: <Widget>[
-          RaisedButton(onPressed: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (context){
-              return HomePage();
-            }));
-          }, child: Text("Video Play"),),
-          RaisedButton(onPressed: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (context){
-              return SimpleVideoPlayer("http://184.72.239.149/vod/smil:BigBuckBunny.smil/playlist.m3u8", isLandscape: true,);
-            }));
-          }, child: Text("Video Full Play"),)
-        ],
-      ),
+      body: Container(
+        height: 300.0,
+        child: SimpleViewPlayer("http://184.72.239.149/vod/smil:BigBuckBunny.smil/playlist.m3u8", isFullScreen: false,),
+      )
     );
   }
 }
